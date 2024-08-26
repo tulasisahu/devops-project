@@ -1,33 +1,29 @@
 pipeline {
-    agent { lebel 'jenkin-agent' }
+    agent { label 'jenkin-agent' } // Corrected 'lebel' to 'label'
     tools {
-        jdk 'java17"
-       maven 'maven3'
-       }
-   stages { 
-        stage ('cleanup-workpace'){
-        steps {
-         cleanws()
-        }
-   }
-      stage ('checkout from SCM' ){
-      steps {
-          git branch: 'main' , credentialsId: 'github' , url: 'https://github.com/tulasisahu/devops-project.git'
+        jdk 'java17' // Changed double quote to single quote
+        maven 'maven3'
+    }
+    stages { 
+        stage ('cleanup-workspace') { // Corrected 'cleanup-workpace' to 'cleanup-workspace'
+            steps {
+                cleanWs() // Corrected 'cleanws' to 'cleanWs'
             }
-     
-       }
-      stage ('Build Application') {
-        steps {
-             sh "mvn clean package"
-             }
-
-     }
-      stage ('test Application') {
-        steps {
-             sh "mvn test"
-          }
-   }
- }
+        }
+        stage ('checkout from SCM') {
+            steps {
+                git branch: 'main', credentialsId: 'github', url: 'https://github.com/tulasisahu/devops-project.git'
+            }
+        }
+        stage ('Build Application') {
+            steps {
+                sh "mvn clean package"
+            }
+        }
+        stage ('Test Application') { // Capitalized 'Test' for consistency
+            steps {
+                sh "mvn test"
+            }
+        }
+    }
 }
-
-
