@@ -14,7 +14,7 @@ pipeline {
 
         stage("Checkout from SCM"){
                 steps {
-                    git branch: 'main', credentialsId: 'github', url: 'gh repo clone tulasisahu/devops-project'
+                    git branch: 'main', changelog: false, credentialsId: 'github', poll: false, url: 'https://github.com/tulasisahu/devops-project.git'
                 }
         }
 
